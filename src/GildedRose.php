@@ -11,6 +11,11 @@ final class GildedRose
      */
     private $items;
 
+    const NORMAL_QUALITY_INCREMENT = 1;
+    const NORMAL_SELL_IN_INCREMENT = 1;
+
+    const MAX_QUALITY_LVL = 50;
+
     public function __construct(array $items)
     {
         $this->items = $items;
@@ -22,7 +27,7 @@ final class GildedRose
             if ($item->name != 'Aged Brie' and $item->name != 'Backstage passes to a TAFKAL80ETC concert') {
                 if ($item->quality > 0) {
                     if ($item->name != 'Sulfuras, Hand of Ragnaros') {
-                        $item->quality = $item->quality - 1;
+                        $item->quality = $item->quality - self::NORMAL_QUALITY_INCREMENT;
                     }
                 }
             } else {
@@ -31,12 +36,12 @@ final class GildedRose
                     if ($item->name == 'Backstage passes to a TAFKAL80ETC concert') {
                         if ($item->sell_in < 11) {
                             if ($item->quality < 50) {
-                                $item->quality = $item->quality + 1;
+                                $item->quality = $item->quality + self::NORMAL_QUALITY_INCREMENT;
                             }
                         }
                         if ($item->sell_in < 6) {
                             if ($item->quality < 50) {
-                                $item->quality = $item->quality + 1;
+                                $item->quality = $item->quality + self::NORMAL_QUALITY_INCREMENT;
                             }
                         }
                     }
@@ -44,7 +49,7 @@ final class GildedRose
             }
 
             if ($item->name != 'Sulfuras, Hand of Ragnaros') {
-                $item->sell_in = $item->sell_in - 1;
+                $item->sell_in = $item->sell_in - self::NORMAL_SELL_IN_INCREMENT;
             }
 
             if ($item->sell_in < 0) {
@@ -52,7 +57,7 @@ final class GildedRose
                     if ($item->name != 'Backstage passes to a TAFKAL80ETC concert') {
                         if ($item->quality > 0) {
                             if ($item->name != 'Sulfuras, Hand of Ragnaros') {
-                                $item->quality = $item->quality - 1;
+                                $item->quality = $item->quality - self::NORMAL_QUALITY_INCREMENT;
                             }
                         }
                     } else {
@@ -60,7 +65,7 @@ final class GildedRose
                     }
                 } else {
                     if ($item->quality < 50) {
-                        $item->quality = $item->quality + 1;
+                        $item->quality = $item->quality + self::NORMAL_QUALITY_INCREMENT;
                     }
                 }
             }
