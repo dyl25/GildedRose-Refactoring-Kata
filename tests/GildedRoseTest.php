@@ -15,6 +15,30 @@ class GildedRoseTest extends TestCase
         $items = [new Item('foo', 0, 0)];
         $gildedRose = new GildedRose($items);
         $gildedRose->updateQuality();
-        $this->assertSame('fixme', $items[0]->name);
+        $this->assertSame('foo', $items[0]->name);
     }
+
+    public function testQualityDegradesTwice(): void
+    {
+        $items = [new Item('foo', -1, 2)];
+        $gildedRose = new GildedRose($items);
+        $gildedRose->updateQuality();
+        $this->assertEquals(0, $items[0]->quality);
+    }
+
+    public function testBrieQualityIncrease(): void
+    {
+        $items = [new Item('Aged Brie', 1, 2)];
+        $gildedRose = new GildedRose($items);
+        $gildedRose->updateQuality();
+        $this->assertEquals(3, $items[0]->quality);
+    }
+
+    /*public function testConjuredItemDegradeFaster(): void
+    {
+        $items = [new Item('Conjured', 10, 4)];
+        $gildedRose = new GildedRose($items);
+        $gildedRose->updateQuality();
+        $this->assertEquals(2, $items[0]->quality);
+    }*/
 }
