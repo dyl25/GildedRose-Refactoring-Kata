@@ -34,11 +34,11 @@ class GildedRoseTest extends TestCase
         $this->assertEquals(3, $items[0]->quality);
     }
 
-    /*public function testConjuredItemDegradeFaster(): void
+    public function testConjuredItemDegradeFaster(): void
     {
         $items = [new Item('Conjured', 10, 4)];
         $gildedRose = new GildedRose($items);
         $gildedRose->updateQuality();
         $this->assertEquals(2, $items[0]->quality);
-    }*/
+    }
 }
