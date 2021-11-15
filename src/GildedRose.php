@@ -21,6 +21,11 @@ final class GildedRose
         $this->items = $items;
     }
 
+    /**
+     * Update the quality of an item
+     *
+     * @return void
+     */
     public function updateQuality(): void
     {
         foreach ($this->items as $item) {
