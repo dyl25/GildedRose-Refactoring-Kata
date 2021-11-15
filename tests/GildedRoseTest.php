@@ -23,7 +23,7 @@ class GildedRoseTest extends TestCase
         $items = [new Item('foo', -1, 2)];
         $gildedRose = new GildedRose($items);
         $gildedRose->updateQuality();
-        $this->assertEquals(0, $items[0]->quality);
+        $this->assertSame(0, $items[0]->quality);
     }
 
     public function testBrieQualityIncrease(): void
@@ -31,7 +31,7 @@ class GildedRoseTest extends TestCase
         $items = [new Item('Aged Brie', 1, 2)];
         $gildedRose = new GildedRose($items);
         $gildedRose->updateQuality();
-        $this->assertEquals(3, $items[0]->quality);
+        $this->assertSame(3, $items[0]->quality);
     }
 
     public function testConjuredItemDegradeFaster(): void
@@ -39,7 +39,7 @@ class GildedRoseTest extends TestCase
         $items = [new Item('Conjured', 10, 4)];
         $gildedRose = new GildedRose($items);
         $gildedRose->updateQuality();
-        $this->assertEquals(2, $items[0]->quality);
+        $this->assertSame(2, $items[0]->quality);
     }
 
     public function testConjuredItemQualityCanNotBeNegative(): void
@@ -47,6 +47,6 @@ class GildedRoseTest extends TestCase
         $items = [new Item('Conjured', 10, 1)];
         $gildedRose = new GildedRose($items);
         $gildedRose->updateQuality();
-        $this->assertEquals(0, $items[0]->quality);
+        $this->assertSame(0, $items[0]->quality);
     }
 }

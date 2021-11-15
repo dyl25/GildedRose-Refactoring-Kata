@@ -6,15 +6,16 @@ namespace GildedRose;
 
 final class GildedRose
 {
+    public const NORMAL_QUALITY_INCREMENT = 1;
+
+    public const NORMAL_SELL_IN_INCREMENT = 1;
+
+    public const MAX_QUALITY_LVL = 50;
+
     /**
      * @var Item[]
      */
     private $items;
-
-    const NORMAL_QUALITY_INCREMENT = 1;
-    const NORMAL_SELL_IN_INCREMENT = 1;
-
-    const MAX_QUALITY_LVL = 50;
 
     public function __construct(array $items)
     {
@@ -23,8 +24,6 @@ final class GildedRose
 
     /**
      * Update the quality of an item
-     *
-     * @return void
      */
     public function updateQuality(): void
     {
@@ -34,19 +33,18 @@ final class GildedRose
                     if ($item->name === 'Conjured') {
                         $qty = $item->quality - (self::NORMAL_QUALITY_INCREMENT * 2);
 
-                        if($qty < 0) {
+                        if ($qty < 0) {
                             $item->quality = 0;
-                        }else{
+                        } else {
                             $item->quality = $qty;
                         }
-
                     } elseif ($item->name !== 'Sulfuras, Hand of Ragnaros') {
                         $item->quality = $item->quality - self::NORMAL_QUALITY_INCREMENT;
                     }
                 }
             } else {
                 if ($item->quality < 50) {
-                    $item->quality = $item->quality + 1;
+                    $item->quality = $item->quality + self::NORMAL_QUALITY_INCREMENT;
                     if ($item->name === 'Backstage passes to a TAFKAL80ETC concert') {
                         if ($item->sell_in < 11) {
                             if ($item->quality < 50) {
